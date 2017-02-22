@@ -148,7 +148,7 @@ class HashTable:
 
 
 def insertion_search(l, key, low, high):
-    mid = low + (key-l[low]) / (a[high]-a[low]) * (high-low)
+    mid = low + (key-l[low]) / (l[high]-l[low]) * (high-low)
     if l[mid] == key:
         return mid
     if l[mid] > key:
