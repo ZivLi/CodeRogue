@@ -62,6 +62,24 @@ def bubble_sort(lists):
     return lists
 
 
+def quick_sort(arr, left, right):
+    if left < right:
+        pivot_index = partition(arr, left, right)
+        quick_sort(arr, left, pivot_index-1)
+        quick_sort(arr, pivot_index+1, right)
+
+def partition(arr, left, right):
+    pivot_index = left
+    pivot = arr[left]
+    for i in range(left+1, right+1):
+        if arr[i] < pivot:
+            pivot_index += 1
+            if pivot_index != i:
+                arr[pivot_index], arr[i] = arr[i], arr[pivot_index]
+    arr[left], arr[pivot_index] = arr[pivot_index], arr[left]
+
+    return pivot_index
+
 def quick_sort(lists, left, right):
     """
     快速排序:
