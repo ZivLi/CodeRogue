@@ -13,6 +13,7 @@ from web.config import REDIS
 
 redis = StrictRedis(host=REDIS.HOST, port=REDIS.PORT, db=REDIS.DB)
 
+
 def key_maker(key_pattern, func):
     arg_names, varargs, varkw, defaults = inspect.getargspec(func)
     args = dict(zip(arg_names[-len(defaults):], defaults)) if defaults else {}
