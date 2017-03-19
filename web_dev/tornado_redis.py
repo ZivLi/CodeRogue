@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # coding: utf-8
-
 from functools import wraps
 from msgpack import dumps, loads
 import inspect
@@ -67,7 +66,6 @@ class Cache(object):
         def rm(*args, **kwds):
             k = _key(*args, **kwds)
             redis.delete(k)
-
         __.rm = rm
         return __
     return _

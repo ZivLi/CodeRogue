@@ -6,7 +6,6 @@ class CompressedTextField(models.TextField):
     """
     model Fields for storing txt in a compressed format (bz2 by default)
     """
-
     def from_db_value(self, value, expression, connection, context):
         if not value:
             return value
