@@ -1,9 +1,7 @@
 # coding: utf-8
 import scrapy
 
-
 class FolkMusicSpider(scrapy.Spider):
-
     name = "folkmusic"
     allowed_domains = ["folkmusic.org"]
     start_urls = [
