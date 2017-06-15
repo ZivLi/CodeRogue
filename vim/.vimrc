@@ -226,10 +226,10 @@ let g:autopep8_disable_show_diff=1
 "let g:molokai_original = 1
 "colorscheme molokai
 "try
-syntax enable
-colorscheme solarized
+"syntax enable
+"colorscheme solarized
 "colorscheme corporation
-set background=dark
+"set background=dark
 "set background=light
 "let g:solarized_termcolors=256
 "catch
@@ -323,3 +323,19 @@ function ToggleCopy()
     let g:copymode=!g:copymode
 endfunction
 Plugin 'wakatime/vim-wakatime'
+
+function! Zoom ()
+    if tabpagenr('$') > 1 && tabpagewinnr(tabpagenr(), '$') == 1
+        let l: cur_winview = winsaveview()
+        let l: cur_bufname = bufname('')
+        tabclose
+
+        if l: cur_bufname == bufname('')
+            call winrestview(cur_winview)
+        endif
+    else
+        tab split
+    endif
+endfunction
+
+nmap <leader>z :call Zoom()<CR>
