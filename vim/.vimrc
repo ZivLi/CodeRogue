@@ -14,7 +14,7 @@ Plugin 'vim-scripts/ctags.vim'              "生成Tag，跟TagList搭配
 Plugin 'vim-scripts/taglist.vim'            "显示Tag
 Plugin 'scrooloose/nerdtree'                "文件浏览
 Plugin 'kien/ctrlp.vim'                     "根据文件名和文件内容模糊搜索并打开文件
-"Plugin 'altercation/vim-colors-solarized'   "配色方案
+Plugin 'altercation/vim-colors-solarized'   "配色方案
 Plugin 'bling/vim-airline'                  "底部状态栏
 Plugin 'rking/ag.vim'                       "ag插件
 Plugin 'dyng/ctrlsf.vim'                    "让ag支持上下文
@@ -33,11 +33,12 @@ Plugin 'tell-k/vim-autopep8'                "自动格式化
 Plugin 'heavenshell/vim-pydocstring'        "自动生成python的docstring
 Plugin 'ekalinin/Dockerfile.vim'            "Dockerfile
 Plugin 'chase/vim-ansible-yaml'
-" Plugin 'fholgado/minibufexpl.vim'           "打开文件的选项卡
-" Plugin 'Yggdroot/indentLine'                "垂直缩进对齐线
-" Plugin 'vim-scripts/matchit.zip'            "html标签跳转
+Plugin 'fholgado/minibufexpl.vim'           "打开文件的选项卡
+Plugin 'Yggdroot/indentLine'                "垂直缩进对齐线
+Plugin 'vim-scripts/matchit.zip'            "html标签跳转
 Plugin 'gregsexton/MatchTag'                "html标签匹配高亮
-" Plugin 'terryma/vim-multiple-cursors'       "多光标选择
+Plugin 'terryma/vim-multiple-cursors'       "多光标选择
+Plugin 'wakatime/vim-wakatime'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -165,10 +166,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 """""""""""""""""""""""""""""""""""""""
 let Tlist_Show_One_File = 1 "不同时显示多个文件的tag，只显示当前文件的
 let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim
-"let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
+let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
 let Tlist_File_Fold_Auto_Close = 1
 "只显示当前文件tag，其它文件的tag都被折叠起来
 "set tags=/andes/project/mkdemo/src/tags
+let Tlist_Auto_Open=1
 set tags=tags;
 "set autochdir
 "F12生成/更新tags文件
@@ -224,10 +226,10 @@ let g:autopep8_disable_show_diff=1
 "
 """""""""""""""""""""""""""""""""""""""
 "let g:molokai_original = 1
-"colorscheme molokai
 "try
 "syntax enable
-"colorscheme solarized
+colorscheme solarized
+"colorscheme desert 
 "colorscheme corporation
 "set background=dark
 "set background=light
@@ -235,10 +237,10 @@ let g:autopep8_disable_show_diff=1
 "catch
 "endtry
 "let g:solarized_termtrans=1
-""set cursorline                         "光标所在行高亮
+"set cursorline                         "光标所在行高亮
 
 highlight CursorLine ctermbg=240 cterm=bold
-let g:rainbow_active = 1    "彩虹括号
+"let g:rainbow_active = 1    "彩虹括号
 
 
 """""""""""""""""""""""""""""""""""""""
@@ -288,12 +290,12 @@ map <F11> :call Autopep8()<CR>
 map <F9> :SyntasticCheck python<CR>
 map <F8> :res-1<CR>
 map <F7> :res+1<CR>
-map <F6> :vertical res-1<CR>
-map <F5> :vertical res+1<CR>
-map <F4> :call FormartSrc()<CR>
-" map <F3> :set paste<CR>
-" map <F2> :set nopaste<CR>
+map <F6> :set paste<CR>
+"map <F5> :set nopaste<CR>
 " 方便复制文件
+map <F4> :call FormartSrc()<CR>
+map <F3> :vertical res-1<CR>
+map <F2> :vertical res+1<CR>
 vnoremap <F2> :call Rp() <CR>
 "ag搜索
 nmap <C-S>f :CtrlSF  
@@ -322,7 +324,6 @@ function ToggleCopy()
     endif
     let g:copymode=!g:copymode
 endfunction
-Plugin 'wakatime/vim-wakatime'
 
 function! Zoom ()
     if tabpagenr('$') > 1 && tabpagewinnr(tabpagenr(), '$') == 1
@@ -337,5 +338,9 @@ function! Zoom ()
         tab split
     endif
 endfunction
+
+if exists('$TMUX')
+    set term=screen-256color
+endif
 
 nmap <leader>z :call Zoom()<CR>
