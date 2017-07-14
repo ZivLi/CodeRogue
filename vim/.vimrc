@@ -23,7 +23,7 @@ Plugin 'jlfwong/vim-mercenary'              "hg插件，支持blame和diff
 Plugin 'mattn/emmet-vim'                    "zen-codeing
 Plugin 'luochen1990/rainbow'                "彩虹括号，匹配的括号显示为同一颜色
 Plugin 'godlygeek/tabular'                  "自动对齐
-Plugin 'tpope/vim-commentary'               "批量注释 
+Plugin 'tpope/vim-commentary'               "批量注释
 Plugin 'hynek/vim-python-pep8-indent'       "python自动缩进
 Plugin 'edkolev/tmuxline.vim'               "Airline支持tmux
 Plugin 'Valloric/YouCompleteMe'             "自动补全
@@ -38,6 +38,7 @@ Plugin 'Yggdroot/indentLine'                "垂直缩进对齐线
 Plugin 'vim-scripts/matchit.zip'            "html标签跳转
 Plugin 'gregsexton/MatchTag'                "html标签匹配高亮
 Plugin 'terryma/vim-multiple-cursors'       "多光标选择
+Plugin 'ShowTrailingWhitespace'
 Plugin 'wakatime/vim-wakatime'
 
 call vundle#end()            " required
@@ -80,7 +81,7 @@ if &filetype == 'sh'
     exec "!bash %"
 endif
 endfunc
-"结束定义RunSrc  
+"结束定义RunSrc
 
 "定义FormartSrc()
 "需使用以下的格式化插件https://bitbucket.org/zuroc/42qu-linux-config
@@ -138,10 +139,10 @@ autocmd FileType yaml setlocal et sta sw=2 sts=2
 if filereadable("~/.vim/py.tlp ")
     autocmd BufNewFile *.py  0r  ~/.vim/py.tlp
 endif
-retab 
+retab
 
 """""""""""""""""""""""""""""""""""""""
-"            
+"
 "            ctrlp设置
 "
 """""""""""""""""""""""""""""""""""""""
@@ -160,7 +161,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 
 """""""""""""""""""""""""""""""""""""""
-"        
+"
 "        Taglist and Ctags
 "
 """""""""""""""""""""""""""""""""""""""
@@ -170,7 +171,7 @@ let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
 let Tlist_File_Fold_Auto_Close = 1
 "只显示当前文件tag，其它文件的tag都被折叠起来
 "set tags=/andes/project/mkdemo/src/tags
-let Tlist_Auto_Open=1
+"let Tlist_Auto_Open=1
 set tags=tags;
 "set autochdir
 "F12生成/更新tags文件
@@ -181,8 +182,8 @@ endfunction
 
 
 """""""""""""""""""""""""""""""""""""""
-"               
-"               airline            
+"
+"               airline
 "
 """""""""""""""""""""""""""""""""""""""
 set laststatus=2
@@ -228,8 +229,8 @@ let g:autopep8_disable_show_diff=1
 "let g:molokai_original = 1
 "try
 "syntax enable
-colorscheme solarized
-"colorscheme desert 
+"colorscheme solarized
+colorscheme desert
 "colorscheme corporation
 "set background=dark
 "set background=light
@@ -268,7 +269,7 @@ nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
 """""""""""""""""""""""""""""""""""""""
 "
-"           解决长行文本变卡                
+"           解决长行文本变卡
 "
 """""""""""""""""""""""""""""""""""""""
 "set synmaxcol=128
@@ -277,12 +278,12 @@ set ttyscroll=3
 set lazyredraw
 """""""""""""""""""""""""""""""""""""""
 "
-"               快捷键                 
+"               快捷键
 "
 """""""""""""""""""""""""""""""""""""""
 "解决组合快捷键导致某些快捷键变卡的问题
 "例如如果map了np, 就会导致搜索n有一个很长的反应时间
-set timeoutlen=200 
+set timeoutlen=200
 map <F12> :call RunSrc()<CR>
 map <C-F11> :call Autopep8()<CR>
 map <F11> :call Autopep8()<CR>
@@ -298,8 +299,8 @@ map <F3> :vertical res-1<CR>
 map <F2> :vertical res+1<CR>
 vnoremap <F2> :call Rp() <CR>
 "ag搜索
-nmap <C-S>f :CtrlSF  
-nmap <C-S>o :CtrlSFOpen<CR> 
+nmap <C-S>f :CtrlSF
+nmap <C-S>o :CtrlSFOpen<CR>
 nmap ss :CtrlSF <C-R><C-W><CR>
 vnoremap ss y:CtrlSF <C-R>"<CR>
 vnoremap <C-Tab> :Tabularize <C-R><C-W><CR>
@@ -344,3 +345,5 @@ if exists('$TMUX')
 endif
 
 nmap <leader>z :call Zoom()<CR>
+nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
+
