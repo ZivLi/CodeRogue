@@ -8,9 +8,9 @@ from email.mime.multipart import MIMEMultipart
 
 
 def send_mail(receivers, subject, context):
-    mail_host = "smtp.163.com"
-    mail_password = ""  # change me.
-    mail_user = ""  # change me.
+    mail_host = "smtp.zhangyue.com"
+    mail_password = "11211010_Lxy"  # change me.
+    mail_user = "lixinyi@zhangyue.com"  # change me.
     msg = MIMEMultipart()
     msg['Subject'] = subject
     msg['From'] = mail_user
