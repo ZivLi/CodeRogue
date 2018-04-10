@@ -1,4 +1,4 @@
-##本地开发分支
+## 本地开发分支
 > 1.git checkout -b dev
 
     在本地创建自己的dev分支（基准分支）
@@ -22,6 +22,8 @@
 > 5.git status
 
 > 6.git add . / git add filenames
+     
+    需要注意的是，本地执行完 python manage.py makemigrations，在该app下生成的migrations文件夹要一起push到远端，保证所有人的migration文件夹同步的。
 
 > 7.git commit -m 'commit-msg' / git commit --amend
 
@@ -50,3 +52,8 @@
 > 10.git push origin feature/PROJ/NO-Branch-Name
 
     将代码push到远端仓库的分支，并发起pull/merge request。
+    
+## 测试 | 线上环境部署
+
+	从测试/线上环境服务器上，分别拉取dev/master分支的最新代码。在有model更新的app下手动执行 python manage.py migrate命令，完成数据库迁移。
+	除线上紧急hotfix的情况下，应尽量避免从master分支直接修改提交代码。如果紧急hotfix修改之后，要注意将master上的最新修改merge到dev分支，以确保之后的工作流中不会出现文件修改冲突的问题。
