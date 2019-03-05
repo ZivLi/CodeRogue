@@ -162,3 +162,8 @@ class SKUService:
             return query.items, query.total
         else:
             return query
+
+from sqlalchemy import case
+ep=Examination.query.filter(Examination.id.in_([6,7,8])).order_by(case(((Examination.id == 7, 1), (Examination.id != 7, 2))), '-create_time').paginate(1,4)
+# CASE and multi order in sqlalchemy.
+
